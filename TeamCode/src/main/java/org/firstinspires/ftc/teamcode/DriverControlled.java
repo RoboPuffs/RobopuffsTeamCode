@@ -45,6 +45,7 @@ public class DriverControlled extends OpMode{
         boolean G1RB = gamepad1.right_bumper;
 
 
+
         //robot movement
         robot.frontLeftMotor.setPower(Y + X + R);
         robot.backLeftMotor.setPower(Y - X + R);
@@ -69,6 +70,8 @@ public class DriverControlled extends OpMode{
             robot.armMotor.setPower(-1.0);
         else
             robot.armMotor.setPower(0);
+
+        //controls for the arm servo; emptying out minerals
 
 
 

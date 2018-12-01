@@ -15,7 +15,7 @@ public class RobotHardware
     public DcMotor verticalArmMovement;
     public DcMotor horizontalArmMovement;
     public Servo   servoArm;
-    public CRServo   servoIntake;
+    public CRServo servoIntake;
     public DcMotor armMotor;
 
     // creating the hardware map
@@ -65,8 +65,9 @@ public class RobotHardware
 
         /* set servo position
         servoArm.setPosition(0); //have to change later when robot is running ***
-        servoIntake.setPower(0); //have to change later with testing ***
         */
+        servoIntake.setPower(0); //have to change later with testing ***
+
     }
 
     /*public void forwardPositions(){
