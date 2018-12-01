@@ -55,9 +55,9 @@ public class DriverControlled extends OpMode{
 
 
         // code for intake of minerals via servo
-        if(G2LB)
+        if(G2RB)
             robot.servoIntake.setPower(1.0);
-        else if(G2RB)
+        else if(G2LB)
             robot.servoIntake.setPower(-1.0);
         else
             robot.servoIntake.setPower(0.0);
