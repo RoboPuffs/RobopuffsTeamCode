@@ -66,7 +66,7 @@ public class RobotHardware
         /* set servo position
         servoArm.setPosition(0); //have to change later when robot is running ***
         */
-        servoIntake.setPower(0); //have to change later with testing ***
+        servoIntake.setPower(0);
 
     }
 
