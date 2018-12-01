@@ -32,9 +32,9 @@ public class RobotHardware
         frontRightMotor = hardwareMap.get(DcMotor.class, "front right motor");
         backLeftMotor = hardwareMap.get(DcMotor.class, "back left motor");
         backRightMotor = hardwareMap.get(DcMotor.class, "back right motor");
-        verticalArmMovement = hardwareMap.get(DcMotor.class, "vertical movement");
-        horizontalArmMovement = hardwareMap.get(DcMotor.class, "horizontal movement");
-        servoArm = hardwareMap.get(Servo.class, "servo arm");
+        //verticalArmMovement = hardwareMap.get(DcMotor.class, "vertical movement");
+        //horizontalArmMovement = hardwareMap.get(DcMotor.class, "horizontal movement");
+        //servoArm = hardwareMap.get(Servo.class, "servo arm");
         servoIntake = hardwareMap.get(CRServo.class, "servo intake");
         armMotor = hardwareMap.get(DcMotor.class, "arm motor");
 
