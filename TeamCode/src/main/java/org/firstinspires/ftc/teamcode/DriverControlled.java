@@ -77,7 +77,7 @@ public class DriverControlled extends OpMode{
 
     }
 
-    // runs once on
+    // runs once
     @Override
     public void stop() {
         //could set servo arm back to zero etc.
