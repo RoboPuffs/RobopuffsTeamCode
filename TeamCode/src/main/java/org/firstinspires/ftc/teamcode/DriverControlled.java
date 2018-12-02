@@ -83,7 +83,6 @@ public class DriverControlled extends OpMode{
         else
             robot.armMotor.setPower(0);
 
-        //controls for the arm servo; emptying out minerals
 
 
 
