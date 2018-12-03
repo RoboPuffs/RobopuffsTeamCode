@@ -4,15 +4,17 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 
 @Autonomous(name = "ULTIMATE MEMES", group = "Autonomous")
-public class autonomousTest extends OpMode {
+public class AutonomousTest extends OpMode {
 
-    RobotHardware robot = new RobotHardware();
+    RobotHardware hRobot = new RobotHardware();
 
     @Override
     public void init() {
         telemetry.addData("STATUS", "Starting Initialization");
-        robot.init(hardwareMap);
+        hRobot.init(hardwareMap);
         telemetry.addData("STATUS", "Initialized");
+
+        double x, y, r;
     }
 
     @Override
@@ -34,4 +36,8 @@ public class autonomousTest extends OpMode {
     public void stop() {
 
     }
+}
+
+class RobotFunctions {
+
 }
