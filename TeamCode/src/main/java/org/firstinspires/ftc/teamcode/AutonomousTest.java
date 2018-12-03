@@ -2,6 +2,8 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
+import com.qualcomm.robotcore.hardware.ColorSensor;
+import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.robotcore.external.ClassFactory;
 import org.firstinspires.ftc.robotcore.external.matrices.OpenGLMatrix;
@@ -32,14 +34,22 @@ public class AutonomousTest extends OpMode {
     private List<VuforiaTrackable> allTrackables;
     private OpenGLMatrix lastLocation = null;
 
+    private int cBlueValue, cRedValue, cGreenValue;
+
 
     @Override
     public void init() {
         telemetry.addData("STATUS", "Starting Initialization");
         hRobot.init(hardwareMap);
+        fRobot.init(hardwareMap);
+        fRobot.hardwareInit();
         fRobot.vuforiaSetup();
-
         allTrackables = fRobot.trackables();
+
+        //set these to the color values for yellow.
+        cBlueValue = 100;
+        cRedValue = 100;
+        cGreenValue = 100;
 
         telemetry.addData("STATUS", "Initialized");
     }
@@ -56,6 +66,7 @@ public class AutonomousTest extends OpMode {
 
     @Override
     public void loop() {
+        /**VUFORIA CODE**/
         targetVisible = false;
         for (VuforiaTrackable trackable : allTrackables) {
             if (((VuforiaTrackableDefaultListener)trackable.getListener()).isVisible()) {
@@ -85,6 +96,15 @@ public class AutonomousTest extends OpMode {
         else {
             telemetry.addData("Visible Target", "none");
         }
+
+        /**COLOR SENSOR**/
+        if(fRobot.possibleCS.blue() <= cBlueValue && fRobot.possibleCS.red() >= cRedValue && fRobot.possibleCS.green() >= cGreenValue) {
+            //Do action to knock off the yellow block.
+        } else {
+            //Do action to progressively test each one.
+        }
+
+
         telemetry.update();
     }
 
@@ -96,6 +116,7 @@ public class AutonomousTest extends OpMode {
 
 class RobotFunctions extends OpMode{
 
+    //Vuforia Vars
     static final float mmPerInch = 25.4f;
     private static final float mmFTCFieldWidth = (12*6) * mmPerInch;
     private static final float mmTargetHeight = 6 * mmPerInch;
@@ -104,6 +125,17 @@ class RobotFunctions extends OpMode{
     private static final VuforiaLocalizer.CameraDirection CAMERA_CHOICE = BACK;
 
     private VuforiaLocalizer vuforia;
+
+    public ColorSensor possibleCS;
+
+    //Hardware Map
+    public void init(HardwareMap hardwareMap) {
+        possibleCS = hardwareMap.colorSensor.get("possibleCS");
+    }
+
+    public void hardwareInit() {
+        possibleCS.enableLed(true);
+    }
 
     void vuforiaSetup() {
         int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
