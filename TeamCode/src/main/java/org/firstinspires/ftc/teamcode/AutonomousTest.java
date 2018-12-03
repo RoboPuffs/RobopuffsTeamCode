@@ -2,6 +2,8 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
+import com.vuforia.CameraDevice;
+
 import org.firstinspires.ftc.robotcore.external.matrices.OpenGLMatrix;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaLocalizer;
 import static org.firstinspires.ftc.robotcore.external.navigation.VuforiaLocalizer.CameraDirection.BACK;
@@ -50,12 +52,18 @@ class RobotFunctions extends OpMode{
     private static final float mmTargetHeight = 6 * mmPerInch;
 
     private static final String VUFORIA_KEY = "AZ+2Q0L/////AAABmWbS+aSoB0b3mZnRPyJm9UFDL8MygGiR2oXOCAZe1GSo211bmYVsiQUWMwkDfU3/EW4q9zUS0X/RQF1Iq8IDLuINzTo93+8rXZOewAYDmcbOseLgVAGCNE7HYyZjzxVQZ3/jMUB9ea+lEuF5zdUmn9i++DSOiM/BRIkJi8ur5yu9DuQ8TRLyp+WzQpNPjdZy0wmfplWKbmu1bsZ6hV4UT2wcGdryFXnkWgzbYfLemZI4rweWW+tNHb4rihgqoe3CKJ00gibqU4/C6NRzegWU7K4rtL2KLOJeRYylsidex1dkaB6KuwHc1ENKdcZkVdvnDZ33p+tszQA+dJNAs3BseD66QzmtJIZw+4zJjei+rtaz";
-    private static final VuforiaLocalizer.CameraDirection CANERA_CHOICE = BACK;
+    private static final VuforiaLocalizer.CameraDirection CAMERA_CHOICE = BACK;
 
-    OpenGLMatrix lastLocation = null;
+    private OpenGLMatrix lastLocation = null;
+    private boolean targetVisible = false;
     VuforiaLocalizer vuforia;
 
     void vuforiaSetup() {
+        int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
+        VuforiaLocalizer.Parameters parameters = new VuforiaLocalizer.Parameters(cameraMonitorViewId);
+
+        parameters.vuforiaLicenseKey = VUFORIA_KEY;
+        parameters.cameraDirection = CAMERA_CHOICE;
     }
 
     public void init() {
