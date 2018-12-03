@@ -28,9 +28,14 @@ public class TestAutonomous extends OpMode {
     private RobotHardware Robot = new RobotHardware();
     private RobotFunctions fRobot = new RobotFunctions();
 
+    //vuforia
     private boolean targetVisible = false;
     private List<VuforiaTrackable> allTrackables;
     private OpenGLMatrix lastLocation = null;
+
+    //color sensor
+    private int cBlueValue, cRedValue, cGreenValue;
+
 
 
     @Override
@@ -40,6 +45,11 @@ public class TestAutonomous extends OpMode {
         fRobot.vuforiaSetup();
 
         allTrackables = fRobot.trackables();
+
+        //have to change to color values for yellow mineral
+        cBlueValue = 100;
+        cRedValue = 100;
+        cGreenValue = 100;
 
         telemetry.addData("STATUS", "Initialized");
     }
@@ -56,6 +66,8 @@ public class TestAutonomous extends OpMode {
 
     @Override
     public void loop() {
+
+        //FOR VUFORIA
         targetVisible = false;
         for (VuforiaTrackable trackable : allTrackables) {
             if (((VuforiaTrackableDefaultListener)trackable.getListener()).isVisible()) {
@@ -85,6 +97,18 @@ public class TestAutonomous extends OpMode {
         else {
             telemetry.addData("Visible Target", "none");
         }
+
+
+        //detecting minerals with color sensor
+        if(Robot.colorSensor.blue() <= cBlueValue && Robot.colorSensor.red() >= cRedValue && Robot.colorSensor.green() >= cGreenValue) {
+            //action to knock off the yellow block
+            //implement use of servo
+        }
+        else {
+            //action to test each mineral
+        }
+
+
         telemetry.update();
     }
 
@@ -104,6 +128,7 @@ class RobotFunctions extends OpMode{
     private static final VuforiaLocalizer.CameraDirection CAMERA_CHOICE = BACK;
 
     private VuforiaLocalizer vuforia;
+
 
     void vuforiaSetup() {
         int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
