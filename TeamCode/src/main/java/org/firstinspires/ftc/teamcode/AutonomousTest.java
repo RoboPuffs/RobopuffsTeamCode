@@ -28,9 +28,9 @@ public class AutonomousTest extends OpMode {
     private RobotHardware hRobot = new RobotHardware();
     private RobotFunctions fRobot = new RobotFunctions();
 
-    boolean targetVisible = false;
-    List<VuforiaTrackable> allTrackables;
-    OpenGLMatrix lastLocation = null;
+    private boolean targetVisible = false;
+    private List<VuforiaTrackable> allTrackables;
+    private OpenGLMatrix lastLocation = null;
 
 
     @Override
@@ -42,8 +42,6 @@ public class AutonomousTest extends OpMode {
         allTrackables = fRobot.trackables();
 
         telemetry.addData("STATUS", "Initialized");
-
-        double x, y, r;
     }
 
     @Override
@@ -78,7 +76,7 @@ public class AutonomousTest extends OpMode {
             // express position (translation) of robot in inches.
             VectorF translation = lastLocation.getTranslation();
             telemetry.addData("Pos (in)", "{X, Y, Z} = %.1f, %.1f, %.1f",
-                    translation.get(0) / mmPerInch, translation.get(1) / mmPerInch, translation.get(2) / mmPerInch);
+                    translation.get(0) / RobotFunctions.mmPerInch, translation.get(2) / RobotFunctions.mmPerInch);
 
             // express the rotation of the robot in degrees.
             Orientation rotation = Orientation.getOrientation(lastLocation, EXTRINSIC, XYZ, DEGREES);
@@ -98,14 +96,14 @@ public class AutonomousTest extends OpMode {
 
 class RobotFunctions extends OpMode{
 
-    private static final float mmPerInch = 25.4f;
+    static final float mmPerInch = 25.4f;
     private static final float mmFTCFieldWidth = (12*6) * mmPerInch;
     private static final float mmTargetHeight = 6 * mmPerInch;
 
     private static final String VUFORIA_KEY = "AZ+2Q0L/////AAABmWbS+aSoB0b3mZnRPyJm9UFDL8MygGiR2oXOCAZe1GSo211bmYVsiQUWMwkDfU3/EW4q9zUS0X/RQF1Iq8IDLuINzTo93+8rXZOewAYDmcbOseLgVAGCNE7HYyZjzxVQZ3/jMUB9ea+lEuF5zdUmn9i++DSOiM/BRIkJi8ur5yu9DuQ8TRLyp+WzQpNPjdZy0wmfplWKbmu1bsZ6hV4UT2wcGdryFXnkWgzbYfLemZI4rweWW+tNHb4rihgqoe3CKJ00gibqU4/C6NRzegWU7K4rtL2KLOJeRYylsidex1dkaB6KuwHc1ENKdcZkVdvnDZ33p+tszQA+dJNAs3BseD66QzmtJIZw+4zJjei+rtaz";
     private static final VuforiaLocalizer.CameraDirection CAMERA_CHOICE = BACK;
 
-    VuforiaLocalizer vuforia;
+    private VuforiaLocalizer vuforia;
 
     void vuforiaSetup() {
         int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
@@ -130,8 +128,7 @@ class RobotFunctions extends OpMode{
         VuforiaTrackable backSpace = targetsRoverRuckus.get(3);
         backSpace.setName("Back-Space");
 
-        List<VuforiaTrackable> allTrackables = new ArrayList<VuforiaTrackable>();
-        allTrackables.addAll(targetsRoverRuckus);
+        List<VuforiaTrackable> allTrackables = new ArrayList<VuforiaTrackable>(targetsRoverRuckus);
 
         OpenGLMatrix blueRoverLocationOnField = OpenGLMatrix
                 .translation(0, mmFTCFieldWidth, mmTargetHeight)
