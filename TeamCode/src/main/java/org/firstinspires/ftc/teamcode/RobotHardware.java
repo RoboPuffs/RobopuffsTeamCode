@@ -1,8 +1,8 @@
 package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.hardware.*;
-import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.robotcore.hardware.CRServo;
+import com.qualcomm.robotcore.hardware.ColorSensor;
 
 
 public class RobotHardware
@@ -16,6 +16,13 @@ public class RobotHardware
     public CRServo servoIntake;
     public DcMotor armMotor;
     public DcMotor middleArmMotor;
+    public ColorSensor colorSensor;
+
+
+    //temporary definitions for new arm mechanism
+    public DcMotor intakeMotor;
+    public DcMotor inputMotor;
+    public DcMotor armMotor2;
 
     // creating the hardware map
     HardwareMap hardwareMap;
@@ -35,6 +42,14 @@ public class RobotHardware
         servoIntake = hardwareMap.get(CRServo.class, "servo intake");
         armMotor = hardwareMap.get(DcMotor.class, "arm motor");
         middleArmMotor = hardwareMap.get(DcMotor.class, "middle arm motor");
+        colorSensor = hardwareMap.get(ColorSensor.class, "color sensor");
+
+        //initializing variable for potential arm mechanism
+        intakeMotor = hardwareMap.get(DcMotor.class, "intake motor");
+        inputMotor = hardwareMap.get(DcMotor.class, "input motor");
+        armMotor2 = hardwareMap.get(DcMotor.class, "arm motor");
+
+
 
         // set motor power
         frontLeftMotor.setPower(0);
@@ -42,6 +57,12 @@ public class RobotHardware
         backLeftMotor.setPower(0);
         backRightMotor.setPower(0);
         middleArmMotor.setPower(0);
+
+        intakeMotor.setPower(0);
+        inputMotor.setPower(0);
+        armMotor2.setPower(0);
+
+        colorSensor.enableLed(true);
 
 
         // set motor mode
@@ -52,14 +73,20 @@ public class RobotHardware
         backLeftMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         middleArmMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
+        armMotor2.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        inputMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        intakeMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
 
-        // set motor zeroPowerBehavior
+        //set motor zeroPowerBehavior
         frontLeftMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE); //...zeroPowerBehavior.float we want it to stop exactly when set to zero
         frontRightMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         backLeftMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         backRightMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         middleArmMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+
+        inputMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        inputMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
 
         /* set servo position
