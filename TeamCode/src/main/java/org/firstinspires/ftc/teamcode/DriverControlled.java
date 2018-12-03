@@ -12,9 +12,6 @@ public class DriverControlled extends OpMode{
     // define robot
     RobotHardware robot   = new RobotHardware();
 
-
-
-
     //run once on init()
     @Override
     public void init() {
@@ -46,16 +43,11 @@ public class DriverControlled extends OpMode{
         boolean G2DPADup = gamepad2.dpad_up;
         boolean G2DPADdown = gamepad2.dpad_down;
 
-
-
-
         //robot movement
         robot.frontLeftMotor.setPower(Y + X - R);
         robot.backLeftMotor.setPower(Y - X - R);
         robot.frontRightMotor.setPower(-Y + X - R);
         robot.backRightMotor.setPower(-Y -X - R);
-
-
 
         // code for intake of minerals via servo
         if(G2DPADdown)
@@ -65,7 +57,6 @@ public class DriverControlled extends OpMode{
         else
             robot.servoIntake.setPower(0.0);
 
-
         //movement of secondary motor in middle of arm ?? recomment this
         if(G2LB)
             robot.middleArmMotor.setPower(1.0);
@@ -74,7 +65,6 @@ public class DriverControlled extends OpMode{
         else
             robot.middleArmMotor.setPower(0.0);
 
-
         //movement of main arm motor
         if(G1LB)
             robot.armMotor.setPower(1.0);
@@ -82,13 +72,6 @@ public class DriverControlled extends OpMode{
             robot.armMotor.setPower(-1.0);
         else
             robot.armMotor.setPower(0);
-
-
-
-
-
-
-
     }
 
     // runs once
