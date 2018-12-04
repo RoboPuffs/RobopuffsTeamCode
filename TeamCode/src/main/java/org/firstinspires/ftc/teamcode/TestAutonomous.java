@@ -47,9 +47,9 @@ public class TestAutonomous extends OpMode {
         allTrackables = fRobot.trackables();
 
         //have to change to color values for yellow mineral
-        cBlueValue = 100;
-        cRedValue = 100;
-        cGreenValue = 100;
+        cBlueValue = 255;
+        cRedValue = 205;
+        cGreenValue = 53;
 
         telemetry.addData("STATUS", "Initialized");
     }
