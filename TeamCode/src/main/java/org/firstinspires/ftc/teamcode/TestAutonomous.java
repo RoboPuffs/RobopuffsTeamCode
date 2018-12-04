@@ -99,14 +99,15 @@ public class TestAutonomous extends OpMode {
         }
 
 
-        //detecting minerals with color sensor
+        /*detecting minerals with color sensor
         if(Robot.colorSensor.blue() <= cBlueValue && Robot.colorSensor.red() >= cRedValue && Robot.colorSensor.green() >= cGreenValue) {
-            //action to knock off the yellow block
-            //implement use of servo
+
+            Robot.mineralServo.setPosition(1.0); //change to a correct value with testing
         }
         else {
             //action to test each mineral
         }
+        */
 
 
         telemetry.update();
