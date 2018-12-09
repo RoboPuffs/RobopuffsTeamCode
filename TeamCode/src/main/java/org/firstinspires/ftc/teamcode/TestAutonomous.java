@@ -43,13 +43,12 @@ public class TestAutonomous extends OpMode {
         telemetry.addData("STATUS", "Beginning Initialization");
         Robot.init(hardwareMap);
         fRobot.vuforiaSetup();
-
         allTrackables = fRobot.trackables();
 
         //have to change to color values for yellow mineral
-        cBlueValue = 255;
-        cRedValue = 205;
-        cGreenValue = 53;
+        cRedValue = 255;
+        cGreenValue = 205;
+        cBlueValue = 53;
 
         telemetry.addData("STATUS", "Initialized");
     }
@@ -102,12 +101,13 @@ public class TestAutonomous extends OpMode {
         /*detecting minerals with color sensor
         if(Robot.colorSensor.blue() <= cBlueValue && Robot.colorSensor.red() >= cRedValue && Robot.colorSensor.green() >= cGreenValue) {
 
-            Robot.mineralServo.setPosition(1.0); //change to a correct value with testing
+            //Robot.mineralServo.setPosition(1.0); //change to a correct value with testing
         }
         else {
             //action to test each mineral
         }
         */
+
 
 
         telemetry.update();

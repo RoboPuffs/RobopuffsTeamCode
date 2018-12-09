@@ -26,26 +26,18 @@
  * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package org.firstinspires.ftc.robotcontroller.external.samples;
+package org.firstinspires.ftc.teamcode;
 
-import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-
+import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import org.firstinspires.ftc.robotcontroller.external.samples.ConceptVuforiaNavigationWebcam;
 import org.firstinspires.ftc.robotcore.external.ClassFactory;
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
 import org.firstinspires.ftc.robotcore.external.matrices.OpenGLMatrix;
 import org.firstinspires.ftc.robotcore.external.matrices.VectorF;
-import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
-import org.firstinspires.ftc.robotcore.external.navigation.AxesOrder;
-import org.firstinspires.ftc.robotcore.external.navigation.AxesReference;
-import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
-import org.firstinspires.ftc.robotcore.external.navigation.RelicRecoveryVuMark;
-import org.firstinspires.ftc.robotcore.external.navigation.VuMarkInstanceId;
-import org.firstinspires.ftc.robotcore.external.navigation.VuforiaLocalizer;
-import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackable;
-import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackableDefaultListener;
-import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackables;
+import org.firstinspires.ftc.robotcore.external.navigation.*;
 
 /**
  * This OpMode illustrates the basics of using the Vuforia engine to determine
@@ -66,9 +58,9 @@ import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackables;
  * is explained in {@link ConceptVuforiaNavigationWebcam}.
  */
 
-@TeleOp(name="Concept: VuMark Id Webcam", group ="Concept")
-@Disabled
-public class ConceptVuMarkIdentificationWebcam extends LinearOpMode {
+@Autonomous(name="Concept: VuMark Id Webcam", group ="Concept")
+//@Disabled
+public class VuforiaTestAuto extends LinearOpMode {
 
     public static final String TAG = "Vuforia VuMark Sample";
 
@@ -115,7 +107,7 @@ public class ConceptVuMarkIdentificationWebcam extends LinearOpMode {
          * Once you've obtained a license key, copy the string from the Vuforia web site
          * and paste it in to your code on the next line, between the double quotes.
          */
-        parameters.vuforiaLicenseKey = " -- YOUR NEW VUFORIA KEY GOES HERE  --- ";
+        parameters.vuforiaLicenseKey = " AU0E6zH/////AAABmeyLALbsKEFIpMUkLULjns+JunlFl6EODfdmmbA3EL2YiQR78UqUSsa5NYvEWSFznLsxHlBHUdEuvtIYZL4wrdU1VcZoozWgmyAVTQdlGh60nB8nPR4Bz5aHq5N6bnEjpv9eNa96BLWzOjqGJPutC39mos2wQUfZAohsDF978mPlguiRuzW8RM0e88TSjjzlsYfzvioajei3MRbau9oBDzBArzdIr9j+eQqsQ1shrjcFf2KtE1I81yG2cUDNkxmxfXERoco2VrjE4EuhN1mYFQtrggjXd6V/AMs6oyiTAIdJF0AtHOPJX08aOraqyNR7hrqaX0hlgwjnHtGF7jEQOZBmOdfDIZtTyFyz9nScEcVN";
 
 
         /**

@@ -1,11 +1,10 @@
 package org.firstinspires.ftc.teamcode;
 
-
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 
 @TeleOp(name = "color sensor test", group = "TeleOp")
-public class ColorSensorAutonomous extends OpMode {
+public class  ColorSensorAutonomous extends OpMode {
 
     RobotHardware robot = new RobotHardware();
     public int cBlueValue, cRedValue, cGreenValue;
@@ -50,7 +49,7 @@ public class ColorSensorAutonomous extends OpMode {
     @Override
     public void loop() {
 
-        //detecting minerals with color sensor
+        /*detecting minerals with color sensor
         if(robot.colorSensor.blue() <= cBlueValue && robot.colorSensor.red() >= cRedValue && robot.colorSensor.green() >= cGreenValue) {
 
             telemetry.addData("Mineral", "Yellow");
@@ -59,6 +58,7 @@ public class ColorSensorAutonomous extends OpMode {
             telemetry.addData("Mineral", "Not Yellow");
 
         }
+        */
 
     }
 

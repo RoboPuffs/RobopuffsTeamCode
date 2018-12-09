@@ -51,8 +51,8 @@ public class DriverControlled extends OpMode{
         boolean g2_DPAD_down = gamepad2.dpad_down; //for reversing arm to come back to original position
 
         final double SERVO_EMPTIED_POSITION = .8;  //position value for servo emptying minerals position
-        final double SERVO_HOLDING_POSITION = 0.0; //position value for servo in holding minerals position
-        final double MINERAL_HOLDING_START_POSITION= 0.0;
+        final double SERVO_HOLDING_POSITION = 0.1; //position value for servo in holding minerals position
+        final double MINERAL_COLLECTING_POSITION= 0.0;
 
 
         //robot movement
@@ -61,15 +61,15 @@ public class DriverControlled extends OpMode{
         robot.frontRightMotor.setPower(-g1_rightstick_y + g1_rightsick_x - g1_leftstick_x);
         robot.backRightMotor.setPower(-g1_rightstick_y - g1_rightsick_x - g1_leftstick_x);
 
-        /*code for intake of minerals via motor
+        //code for intake of minerals via motor
         if(g2_LB)
             robot.mineralIntakeMotor.setPower(1.0);
         else
             robot.mineralIntakeMotor.setPower(0.0);
-        */
 
 
-        robot.mineralOutputServo.setPosition(MINERAL_HOLDING_START_POSITION);
+
+        robot.mineralOutputServo.setPosition(MINERAL_COLLECTING_POSITION);
 
 
         //using up and down buttons on dpad to move main arm motor on back of robot
@@ -93,6 +93,7 @@ public class DriverControlled extends OpMode{
     // runs once
     @Override
     public void stop() {
+        robot.mineralOutputServo.setPosition(0.4);
 
     }
 }
